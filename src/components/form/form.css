@@ -63,6 +63,10 @@ section{
 .grey{
     color: #989898;
 }
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
 .card{
     width: 28.7%;
     height: 26vh;
@@ -90,8 +94,15 @@ h6{
     .top-right{
         flex-direction: column;
     }
+    input{
+        width: 85%;
+    }
+    .search{
+        margin: 2% 0 0 -7%;
+    }
     select{
-        width: 90%;
+        width: 75vw;
+        margin-left: -35%;
     }
     fieldset{
         width: 90%;

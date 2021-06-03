@@ -57,13 +57,13 @@ const FormTemplate = () => {
                     <p>All Templates</p>
                     <p className="grey">2000 templates</p>
                 </div>
-                <div className="card">
-                    <h6>Alumni Membership Form Template</h6>
-                    <p>Engage your alumni network better with this alumni registration form template.
-                        Embed this in your website.
-                    </p>
-                    <p className="template">Use Template</p>
-                </div>
+               <div className="cards">
+                   {state && state.map( data => (<div className="card">
+                       <h6>{data.name}</h6>
+                       <p>{data.description}</p>
+                       <p className="template">Use Template</p>
+                    </div>))}
+               </div>
             </section>
         </div>
     )   
