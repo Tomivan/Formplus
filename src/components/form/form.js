@@ -1,22 +1,36 @@
 import React, { useState, useEffect} from 'react';
+import axios from 'axios'
+import ReactPaginate from 'react-paginate';
 import Search from '../../assets/images/search.svg';
 import Info from '../../assets/images/info.svg';
 import './form.css';
 
 const FormTemplate = () => {
-    const [state, setState] = useState(null);
-    useEffect(() => {
-        fetch('https://front-end-task-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates', {
-            method: 'GET'
-        })  
-        .then(resp => resp.json())
-        .then(
-            response => {
-                console.log(response)
-                setState(response)
-            }
-        )   
-    }, [])
+    const [offset, setOffset] = useState(0);
+    const [data, setData] = useState([]);
+    const [perPage] = useState(100);
+    const [pageCount, setPageCount] = useState(0)
+  
+    const getData = async() => {
+        const res = await axios.get(`https://front-end-task-dot-fpls-dev.uc.r.appspot.com/api/v1/public/task_templates`)
+        const data = res.data;
+                  const slice = data.slice(offset, offset + perPage)
+                  const postData = slice.map(pd => <div key={pd.id} className="card">
+                      <h6>{pd.name}</h6>
+                       <p>{pd.description}</p>
+                       <p className="template">Use Template</p>
+                  </div>)
+                  setData(postData)
+                  setPageCount(Math.ceil(data.length / perPage))
+    }
+    const handlePageClick = (e) => {
+      const selectedPage = e.selected;
+      setOffset(selectedPage + 1)
+  };
+  
+   useEffect(() => {
+     getData()
+   }, [offset])
     return(
         <div>
             <div className="top-layer">
@@ -58,13 +72,21 @@ const FormTemplate = () => {
                     <p className="grey">2000 templates</p>
                 </div>
                <div className="cards">
-                   {state && state.map( data => (<div className="card">
-                       <h6>{data.name}</h6>
-                       <p>{data.description}</p>
-                       <p className="template">Use Template</p>
-                    </div>))}
+                   {data}
                </div>
             </section>
+            <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
         </div>
     )   
 }

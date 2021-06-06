@@ -28,6 +28,9 @@ input{
 label{
     margin-top: 2%;
 }
+legend{
+    font-size: 10px;
+}
 fieldset{
     width: 10vw;
     height: 3vh;
@@ -65,12 +68,11 @@ section{
 }
 .cards{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .card{
-    width: 28.7%;
     height: 26vh;
-    margin-right: 10%;
+    margin: 0 10% 10% 0;
     padding: .5em;
     box-shadow: rgba(161, 82, 82, 0.1) 0px 10px 10px;
 }
@@ -80,13 +82,42 @@ h6{
 .template{
     background-color: #f9f9f9;
     color: #08bd37;
+    height: 5vh;
+    padding: .3em;
     position: absolute;
-    margin-top: 0.2%;
-    margin-left: -0.5%;
-    height: 3vh;
-    width: 26.4%;
-    padding: .2em;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
+
+.pagination {
+    margin: 2% 40%;
+    display: flex;
+    list-style: none;
+    outline: none;
+  }
+  .pagination > .active > a{
+    background-color: #47ccde ;
+    border-color: #47ccde ;
+    color: #fff;
+  }
+  .pagination > li > a{
+    border: 1px solid #47ccde ;
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+  }
+  .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+    background-color: #47ccde ;
+    border-color: #47ccde;
+    outline: none ;
+  }
+  .pagination > li > a, .pagination > li > span{
+    color: #47ccde
+  }
+  .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
+    border-radius: unset
+  }
 @media(min-width: 320px) and (max-width: 767px) {
     .top-layer{
         flex-direction: column;
