@@ -68,10 +68,10 @@ section{
 }
 .cards{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 .card{
-    height: 26vh;
+    height: 30vh;
     margin: 0 10% 10% 0;
     padding: .5em;
     box-shadow: rgba(161, 82, 82, 0.1) 0px 10px 10px;
@@ -84,10 +84,8 @@ h6{
     color: #08bd37;
     height: 5vh;
     padding: .3em;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    width: 101.5%;
+    margin: 12% 0 0 -1.8%;
 }
 
 .pagination {
@@ -146,12 +144,16 @@ h6{
     .info-icon{
         margin: 10% 2% 0 5%; 
     }
+    .cards{
+        display: flex;
+        flex-direction: column;
+    }
     .card{
         width: 90%;
         height: 35vh;
     }
     .template{
-        margin: 5% 0 0 -2%;
-        width: 83.4%;
+        margin: 18% 0 0 -1.8%;
+        position: static;
     }
 }
